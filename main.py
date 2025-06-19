@@ -31,10 +31,11 @@ app.add_middleware(
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
-# Mount React build static files (npm run build produces 'build' directory)
+# Mount React build static files only if they exist (production build)
 build_dir = Path(__file__).resolve().parent / "build"
-if build_dir.exists():
-    app.mount("/static", StaticFiles(directory=build_dir / "static"), name="static")
+static_dir = build_dir / "static"
+if static_dir.exists():
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 # -------------------------------------------------------------
 # Security helpers
@@ -121,23 +122,20 @@ def setup(req: SetupRequest):
     # Store hashed password
     password_hash = password_context.hash(req.password)
 
-    # Start or reuse ngrok tunnel
-    # Ensure we always use the user's explicit ngrok config file
-    ng_cfg = conf.PyngrokConfig(config_path=str(Path.home() / "AppData/Local/ngrok/ngrok.yml"))
-
-        # Try to reuse existing named tunnel; if it fails we'll start a fresh one
+    # Start or reuse ngrok tunnel (optional). If ngrok quota exceeded, continue with localhost URL.
+    public_url = f"http://localhost:8000"  # sensible fallback
     try:
-        existing = ngrok.connect(name="share", pyngrok_config=ng_cfg)
-        tunnel = existing
-    except Exception:
-        tunnel = ngrok.connect(name="share", pyngrok_config=ng_cfg)
-
-    if config["tunnel"] is None:
+        # Ensure we always use the user's explicit ngrok config file
+        ng_cfg = conf.PyngrokConfig(config_path=str(Path.home() / "AppData/Local/ngrok/ngrok.yml"))
         tunnel = ngrok.connect(name="share", pyngrok_config=ng_cfg)
         public_url = tunnel.public_url
         config.update({"tunnel": tunnel, "public_url": public_url})
-    else:
-        public_url = config["public_url"]
+    except Exception as e:
+        # Log but don't abort – likely simultaneous-session error on free tier
+        print("[ngrok] Tunnel not started:", e)
+        # keep existing tunnel if already stored
+        if config.get("public_url"):
+            public_url = config["public_url"]
 
     # Save config
     config.update({
