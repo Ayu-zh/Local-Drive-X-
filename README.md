@@ -70,3 +70,45 @@ npm start
 cd ..
 python main.py
 ```
+
+## 📖 Usage
+
+1. **Open the React app** at `http://localhost:3000`
+
+2. **Configure your share:**
+   - Enter a folder path (e.g., `C:/Local-Drive-X/shared`)
+   - Set reserved space (in GB)
+   - Create a password
+
+3. **Generate public link** - Click "Generate link" to get a public ngrok URL
+   ```
+   Example: https://yourapp.ngrok.io/files
+   ```
+
+4. **Access and manage files** - Use the link to access the file management page where you can:
+   - Upload files
+   - Download files
+   - View file listings
+   - Authenticate with your password
+
+## ⚠️ Known Issues
+
+### ngrok Configuration
+- **Issue**: The ngrok tunnel may fail with an "invalid tunnel configuration" error
+- **Solution**: Ensure the authtoken is correct and the ngrok client is updated
+
+### bcrypt Compatibility
+- **Issue**: Compatibility issue with bcrypt may cause version errors
+- **Solution**: Reinstall with `pip install bcrypt==4.0.1`
+
+### Localhost Fallback
+- **Issue**: If ngrok fails, the app falls back to `http://localhost:8000`, which is inaccessible externally
+- **Note**: This is expected behavior for local development only
+
+## 🔮 Future Improvements
+
+- [ ] Replace ngrok with a permanent hosting solution for production
+- [ ] Add QR code generation for easy link sharing
+- [ ] Enhance UI with file previews and progress indicators
+- [ ] Implement file encryption for enhanced security
+- [ ] Add user management and multiple folder support
