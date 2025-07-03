@@ -1,3 +1,4 @@
+(in early development)
 # 🔐 Secure File Sharing Application
 
 A secure file-sharing application built with **FastAPI** (backend) and **React** (frontend), designed to allow users to share folders over the internet with authentication, space reservation, and file management capabilities.
