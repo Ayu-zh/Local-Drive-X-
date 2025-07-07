@@ -113,5 +113,5 @@ python main.py
 - [ ] Implement file encryption for enhanced security
 - [ ] Add user management and multiple folder support
 - [ ] Enhance UI with file previews and progress indicators
-- [ ] Develop app based implementation for easier user experience
+- [ ] Develop app based implementation for better user experience
       
