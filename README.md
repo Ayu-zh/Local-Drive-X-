@@ -112,4 +112,6 @@ python main.py
 - [ ] Add QR code generation for easy link sharing 
 - [ ] Implement file encryption for enhanced security
 - [ ] Add user management and multiple folder support
-- [ ] Enhance UI with file previews and progress indicators 
+- [ ] Enhance UI with file previews and progress indicators
+- [ ] Develop app based implementation for easier user experience
+      
