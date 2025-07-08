@@ -108,10 +108,10 @@ python main.py
 
 ## 🔮 Future Improvements
 
-- [ ] Replace ngrok with a permanent hosting solution for production (potentially paid)
-- [ ] Add QR code generation for easy link sharing 
-- [ ] Implement file encryption for enhanced security
-- [ ] Add user management and multiple folder support
+- [ ] Replace ngrok with a permanent hosting solution for production (scalable cloud solution)
+- [ ] Add QR code generation for easy link sharing (qrcode - python library)   
+- [ ] Implement file encryption for enhanced security (pyAesCrypt)
+- [ ] Add user management and multiple folder support (SQLite)
 - [ ] Enhance UI with file previews and progress indicators
 - [ ] Develop app based implementation for better user experience
       
