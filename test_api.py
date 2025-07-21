@@ -24,26 +24,28 @@ def test_api():
                 headers={"Content-Type": "application/json"},
                 timeout=5
             )
-        
-        # Print response details
-        print(f"Status code: {response.status_code}")
-        print(f"Headers: {dict(response.headers)}")
-        
-        # Try to parse as JSON
-        try:
-            data = response.json()
-            print(f"JSON response: {json.dumps(data, indent=2)}")
-            return True
-        except json.JSONDecodeError:
-            print(f"Not a valid JSON response. Content: {response.text[:200]}...")
-            return False
             
-    except requests.exceptions.ConnectionError:
-        print("Connection error: Could not connect to the API server. Is it running?")
-        return False
-    except Exception as e:
-        print(f"Error: {e}")
-        return False
+            # Print response details
+            print(f"Status code: {response.status_code}")
+            print(f"Headers: {dict(response.headers)}")
+            
+            # Try to parse as JSON
+            try:
+                data = response.json()
+                print(f"JSON response: {json.dumps(data, indent=2)}")
+                return True
+            except json.JSONDecodeError:
+                print(f"Not a valid JSON response. Content: {response.text[:200]}...")
+                return False
+                
+        except requests.exceptions.ConnectionError:
+            print("Connection error: Could not connect to the API server. Is it running?")
+            continue
+        except Exception as e:
+            print(f"Error: {e}")
+            continue
+    
+    return False
 
 if __name__ == "__main__":
     success = test_api()

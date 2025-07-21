@@ -79,7 +79,7 @@ const FileManagementPage: React.FC = () => {
   const fetchFiles = async (pwd: string, path: string = '') => {
     setLoading(true);
     try {
-      const resp = await fetch(`/api/files?path=${encodeURIComponent(path)}`, {
+      const resp = await fetch(`$https://share-new.loca.lt/files/api/files?path=${encodeURIComponent(path)}`, {
         headers: {
           Authorization: 'Basic ' + btoa(`${pwd}:${pwd}`),
         },

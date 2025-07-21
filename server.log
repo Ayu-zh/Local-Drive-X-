@@ -1,0 +1,38 @@
+Starting server on port 8000...
+INFO:     Started server process [24596]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Setup request received: folder=C:\Users\Public\Documents, space=1.0GB
+Normalized folder path: C:\Users\Public\Documents
+Resolved folder path: C:\Users\Public\Documents
+Path exists: True, is directory: True
+Successfully read directory contents: C:\Users\Public\Documents, found 5 items
+Folder is writable: C:\Users\Public\Documents
+Reserved bytes: 1073741824
+Disk space: free=200424448000, total=510779191296
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Local-Drive-X-\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+INFO:     127.0.0.1:12198 - "POST /api/setup HTTP/1.1" 200 OK
+Setup request received: folder=C:\Users\priya\Documents, space=0.1GB
+Normalized folder path: C:\Users\priya\Documents
+Resolved folder path: C:\Users\priya\Documents
+Path exists: True, is directory: True
+Successfully read directory contents: C:\Users\priya\Documents, found 5 items
+Folder is writable: C:\Users\priya\Documents
+Reserved bytes: 107374182
+Disk space: free=200421781504, total=510779191296
+INFO:     127.0.0.1:12355 - "POST /api/setup HTTP/1.1" 200 OK
+INFO:     127.0.0.1:12357 - "GET /api/files HTTP/1.1" 200 OK
+INFO:     127.0.0.1:12361 - "GET /api/files HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:12363 - "POST /api/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:12365 - "GET /api/download/api_test_file.txt HTTP/1.1" 200 OK
+INFO:     127.0.0.1:12367 - "GET /api/preview/api_test_file.txt HTTP/1.1" 200 OK
+INFO:     127.0.0.1:12373 - "GET /etc/passwd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:12377 - "GET /api/download/..%5C..%5C..%5CWindows%5CSystem32%5Cconfig%5Csam HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:12379 - "GET /api/download/../../../etc/passwd HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:12470 - "GET /etc/passwd HTTP/1.1" 200 OK
