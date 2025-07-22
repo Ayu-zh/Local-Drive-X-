@@ -8,14 +8,14 @@ A secure file-sharing application built with **FastAPI** (backend) and **React**
 - **🔒 Secure Authentication**: Uses HTTP Basic Authentication with bcrypt for password hashing
 - **📁 File Upload/Download**: Supports file uploads and downloads with space limitation checks
 - **🚀 Dynamic Routing**: React-based frontend with SPA fallback for seamless navigation
-- **🌐 Public Access**: Integrates ngrok to provide temporary public URLs for sharing
+- **🌐 Public Access**: Integrates LocalTunnel to provide temporary public URLs for sharing
 - **⚠️ Error Handling**: Includes robust error messages for setup, upload, and download operations
 
 ## 📋 Prerequisites
 
 - **Python 3.8+**
 - **Node.js** and **npm**
-- **ngrok** account and authtoken (for public URL generation)
+- **LocalTunnel** (for public URL generation)
 
 ### Required Dependencies
 
@@ -24,7 +24,6 @@ A secure file-sharing application built with **FastAPI** (backend) and **React**
 fastapi
 uvicorn
 passlib[bcrypt]
-pyngrok
 psutil
 pydantic
 pyAesCrypt
@@ -52,12 +51,10 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 3. Configure ngrok
-1. Download ngrok from [ngrok.com](https://ngrok.com)
-2. Set your authtoken:
-   ```bash
-   ngrok authtoken your_actual_authtoken_here
-   ```
+### 3. Install LocalTunnel
+```bash
+npm install -g localtunnel
+```
 
 ### 4. Install frontend dependencies
 ```bash
@@ -81,9 +78,9 @@ python main.py
    - Set reserved space (in GB)
    - Create a password
 
-3. **Generate public link** - Click "Generate link" to get a public ngrok URL
+3. **Generate public link** - Click "Generate link" to get a public LocalTunnel URL
    ```
-   Example: https://yourapp.ngrok.io/files
+   Example: https://share-yourfolder.loca.lt/files
    ```
 
 4. **Access and manage files** - Use the link to access the file management page where you can:
@@ -94,24 +91,24 @@ python main.py
 
 ## ⚠️ Known Issues
 
-### ngrok Configuration
-- **Issue**: The ngrok tunnel may fail with an "invalid tunnel configuration" error
-- **Solution**: Ensure the authtoken is correct and the ngrok client is updated
+### LocalTunnel Configuration
+- **Issue**: The LocalTunnel tunnel may fail if the subdomain is already taken or if LocalTunnel is not installed
+- **Solution**: Ensure LocalTunnel is installed globally (`npm install -g localtunnel`). If subdomain fails, try again without specifying a subdomain.
 
 ### bcrypt Compatibility
 - **Issue**: Compatibility issue with bcrypt may cause version errors
 - **Solution**: Reinstall with `pip install bcrypt==4.0.1`
 
 ### Localhost Fallback
-- **Issue**: If ngrok fails, the app falls back to `http://localhost:8000`, which is inaccessible externally
+- **Issue**: If LocalTunnel fails, the app falls back to `http://localhost:8000`, which is inaccessible externally
 - **Note**: This is expected behavior for local development only
 
 ## 🔮 Future Improvements
 
-- [ ] Replace ngrok with a permanent hosting solution for production (scalable cloud solution)
+- [ ] Replace LocalTunnel with a permanent hosting solution for production (scalable cloud solution)
 - [ ] Add QR code generation for easy link sharing (qrcode - python library)   
 - [ ] Implement file encryption for enhanced security (pyAesCrypt)
 - [ ] Add user management and multiple folder support (SQLite)
 - [ ] Enhance UI with file previews and progress indicators
 - [ ] Develop app based implementation for better user experience
-      
+

@@ -1,0 +1,8 @@
+
+> start
+> react-scripts start
+
+Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+ - options.allowedHosts[0] should be a non-empty string.
+
+C:\Local-Drive-X->
